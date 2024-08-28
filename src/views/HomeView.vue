@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import SelectInput from '../components/SelectInput.vue'
-import Button from '../components/Button.vue'
+import Button from '../components/BaseButton.vue'
 import { FaSearch } from 'vue3-icons/fa'
 </script>
 
@@ -14,13 +14,15 @@ import { FaSearch } from 'vue3-icons/fa'
                 alt=""
             />
             <h1>Leve a felicidade para o seu lar</h1>
-            <p>Encontre o animal de estimação ideal para seu estilo de vida!</p>
-            <div class="grid w-max justify-self-end grid-cols-4 gap-6 items-center">
+            <p class="flex items-center">
+                Encontre o animal de estimação ideal para seu estilo de vida!
+            </p>
+            <div class="flex gap-6 items-center justify-end">
                 <label class="text-[1rem] text-right" for="">Busque um amigo</label>
-                <div class="grid col-span-2 gap-2 grid-cols-3 justify-stretch">
+                <div class="flex gap-2">
                     <SelectInput
-                        variant="secondary"
-                        class="w-16 justify-self-end"
+                        variant="primary"
+                        class="w-16"
                         placeholder="UF"
                         :options="{
                             PE: 'PE',
@@ -29,7 +31,7 @@ import { FaSearch } from 'vue3-icons/fa'
                     />
                     <SelectInput
                         variant="primary"
-                        class="w-full col-span-2"
+                        class="w-64"
                         placeholder="Cidade"
                         :options="{
                             Sorocaba: 'sorocaba',

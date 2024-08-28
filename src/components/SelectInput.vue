@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, defineProps, withDefaults, onMounted, onBeforeUnmount } from 'vue'
-import { VariantEnum, variantClasses } from '../utils/variants'
-import { RiArrowDropDownLine } from 'vue3-icons/ri'
+import { type VariantEnum, variantClasses } from '../utils/variants'
+import { RiArrowDropDownLine, RiArrowDropUpLine } from 'vue3-icons/ri'
 
 // Definindo as props
 const props = withDefaults(
@@ -64,20 +64,57 @@ onBeforeUnmount(() => {
         >
             <div class="m-auto flex items-center">
                 <span>{{ selectedKey || props.placeholder || '' }} </span>
-                <RiArrowDropDownLine />
+                <div>
+                    <transition name="slide-up">
+                        <RiArrowDropDownLine v-if="!showDropdown" />
+                        <RiArrowDropUpLine v-else />
+                    </transition>
+                </div>
             </div>
         </div>
 
         <!-- Dropdown -->
-        <div v-if="showDropdown" class="absolute z-10 w-full bg-primary shadow-lg">
-            <div
-                v-for="(value, key, i) in props.options"
-                :key="i"
-                @click="selectOption(key)"
-                class="cursor-pointer justify-center text-xl !font-extrabold hover:bg-primary-alt transition h-10 flex items-center"
-            >
-                {{ key }}
+        <transition name="slide-down">
+            <div v-if="showDropdown" class="absolute z-10 w-full bg-primary-alt">
+                <div
+                    v-for="(value, key, i) in props.options"
+                    :key="i"
+                    @click="selectOption(key)"
+                    class="cursor-pointer justify-center text-xl !font-extrabold hover:bg-primary transition h-10 flex items-center"
+                >
+                    {{ key }}
+                </div>
             </div>
-        </div>
+        </transition>
     </div>
 </template>
+
+<style lang="postcss" scoped>
+.slide-down-enter-active {
+    transition: all 0.3s ease-out;
+}
+
+.slide-down-leave-active {
+    transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-down-enter-from,
+.slide-down-leave-to {
+    transform: translateY(-20px);
+    opacity: 0;
+}
+
+.slide-up-enter-active {
+    transition: all 0.3s ease-out;
+}
+
+.slide-up-leave-active {
+    transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-up-enter-from,
+.slide-up-leave-to {
+    transform: translateY(10px);
+    opacity: 0;
+}
+</style>

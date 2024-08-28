@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import { FaSearch } from 'vue3-icons/fa'
 import { ref, defineProps, withDefaults } from 'vue'
-import { useRouter } from 'vue-router'
 
-import { VariantEnum, variantClasses } from '../utils/variants'
+import { type VariantEnum, variantClasses } from '../utils/variants'
 
 const props = withDefaults(
     defineProps<{
