@@ -63,19 +63,22 @@ onBeforeUnmount(() => {
             @click="toggleDropdown"
         >
             <div class="m-auto flex items-center">
-                <span>{{ selectedKey || props.placeholder || '' }} </span>
-                <div>
-                    <transition name="slide-up">
-                        <RiArrowDropDownLine v-if="!showDropdown" />
-                        <RiArrowDropUpLine v-else />
-                    </transition>
-                </div>
+                <span class="relative pr-5"
+                    >{{ selectedKey || props.placeholder || '' }}
+
+                    <div>
+                        <transition name="slide-up">
+                            <RiArrowDropDownLine class="icon" v-if="!showDropdown" />
+                            <RiArrowDropUpLine class="icon" v-else />
+                        </transition>
+                    </div>
+                </span>
             </div>
         </div>
 
         <!-- Dropdown -->
         <transition name="slide-down">
-            <div v-if="showDropdown" class="absolute z-10 w-full bg-primary-alt">
+            <div v-if="showDropdown" class="custom-select-dropdown">
                 <div
                     v-for="(value, key, i) in props.options"
                     :key="i"
@@ -90,6 +93,24 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang="postcss" scoped>
+/* .custom-select.opened {
+} */
+
+.custom-select-dropdown {
+    @apply absolute z-10 w-full bg-primary-alt;
+}
+
+.custom-select.opened,
+.custom-select-dropdown {
+    @apply shadow-lg;
+}
+
+.icon {
+    @apply absolute top-1 right-0;
+}
+
+/* Animations */
+
 .slide-down-enter-active {
     transition: all 0.3s ease-out;
 }
@@ -104,17 +125,18 @@ onBeforeUnmount(() => {
     opacity: 0;
 }
 
-.slide-up-enter-active {
-    transition: all 0.3s ease-out;
-}
-
+.slide-up-enter-active,
 .slide-up-leave-active {
-    transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+    transition: all 0.25s ease-out;
 }
 
-.slide-up-enter-from,
-.slide-up-leave-to {
-    transform: translateY(10px);
+.slide-up-enter-from {
     opacity: 0;
+    transform: translateY(10px);
+}
+
+.slide-up-leave-to {
+    opacity: 0;
+    transform: translateY(-10px);
 }
 </style>
