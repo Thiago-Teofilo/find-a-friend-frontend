@@ -5,13 +5,13 @@ import { FaSearch } from 'vue3-icons/fa'
 </script>
 
 <template>
-    <div id="home" class="content px-28 py-32">
+    <div id="home" class="content px-28 py-32 fade-in-opacity">
         <main class="grid grid-cols-2 gap-32">
             <img src="../assets/icons/logo_variant_1.svg" alt="logo" />
             <img
-                class="self-end justify-self-end row-span-2"
+                class="self-end justify-self-end row-span-2 fade-in-left"
                 src="../assets/images/objects.svg"
-                alt=""
+                alt="Cachorros"
             />
             <h1>Leve a felicidade para o seu lar</h1>
             <p class="flex items-center">
@@ -47,4 +47,32 @@ import { FaSearch } from 'vue3-icons/fa'
     </div>
 </template>
 
-<style lang="postcss"></style>
+<style lang="postcss">
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-left {
+    animation: fadeInLeft 1s ease-out;
+}
+
+@keyframes fadeInOpacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.fade-in-opacity {
+    animation: fadeInOpacity 0.3s ease-out;
+}
+</style>
