@@ -2,25 +2,24 @@ body {
     @apply font-primary;
 }
 
-header {
-    @apply p-5 text-white items-center z-10 flex fixed w-full left-0 top-0 bg-primary-alt;
-}
-
 #home {
-    @apply text-white bg-primary;
-}
-
-.content {
-    @apply text-black bg-pure-white h-screen w-full py-28 px-5;
+    @apply text-white bg-primary min-h-screen h-full w-full;
 }
 
 h1 {
-    @apply !font-bold !text-4xl;
+    @apply !font-extrabold !text-7xl;
 }
 
-/* Forms */
+p {
+    @apply !font-semibold !text-2xl;
+}
 
 select,
-button {
-    @apply text-center h-14 !rounded-2xl;
+button,
+body div.custom-select {
+    @apply transition-all cursor-pointer rounded-2xl h-16 !px-2 !text-center !font-extrabold !text-xl;
+}
+
+div.custom-select.opened {
+    @apply rounded-b border-primary-alt !bg-primary-alt;
 }

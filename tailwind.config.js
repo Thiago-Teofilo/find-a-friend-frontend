@@ -13,6 +13,7 @@ module.exports = {
                 'primary-alt': '#E44449',
                 secondary: '#0D3B66',
                 tertiary: '#F4D35E',
+                'tertiary-alt': '#dfc156',
                 white: '#FFFFFF',
                 'pure-white': '#FDECED'
             }
